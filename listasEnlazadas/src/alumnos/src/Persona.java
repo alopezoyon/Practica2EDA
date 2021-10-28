@@ -1,4 +1,4 @@
-package segundaFase;
+package alumnos.src;
 
 public class Persona implements Comparable<Persona> {
 	

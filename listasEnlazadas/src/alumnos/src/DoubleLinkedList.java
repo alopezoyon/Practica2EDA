@@ -29,35 +29,39 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// Elimina el primer elemento de la lista
         // Precondición: La lista no es vacía. Hay, al menos, un elemento.
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		T eliminado = this.first();
 		if(this.first() == null) {};
-		if(this.first().equals(last)) {last = null;}
+		if(this.first().equals(last.data)) {last = null;}
 		else {
 			Node <T> primero = last.next;
 			primero = primero.next;
+			primero.prev = last;
 			last.next = primero;
-		};
-		return this.first();
+		}
+		return eliminado;
 	}
 
 	public T removeLast() {
 	// Elimina el último elemento de la lista
         // Precondición: La lista no es vacía. Hay, al menos, un elemento.
 			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		T eliminado = this.last();
 		if(this.first() == null) {};
-		if(this.first().equals(last)) {last = null;}
+		if(this.first().equals(last.data)) {last = null;}
 		else {
 			Node <T> ultimo = last;
-			ultimo = ultimo.prev;
-			ultimo.next = last.next;
-			last = ultimo;
-		};
-		return this.last();
+			ultimo.next.prev = ultimo.prev;
+			ultimo.prev.next = ultimo.next;
+		}
+		return eliminado;
 	}
 		
 
 	public T remove(T elem) {
 	//Elimina un elemento concreto de la lista
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		T eliminado = elem;
+		boolean enc = false;
 		if(last == null) {};
 		if(!this.contains(elem)) {};
 		if(this.contains(elem)) {
@@ -68,15 +72,20 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				this.removeLast();
 			}
 			else {
-				Node<T> elemento = this.last;
-				while(elemento.equals(elem)) {
-					elemento = elemento.prev;
+				Node<T> act = last;
+				while(!enc) {
+					if(act.equals(elem)) {
+						enc = true;
+					}
+					else {
+						act = act.prev;
+					}
 				}
-				elemento.prev.next = elemento.next;
-				elemento.next.prev = elemento.prev;
+				act.next.prev = act.prev;
+				act.prev.next = act.next;
 			}
-		};
-		return this.last();
+		}
+		return eliminado;
 	}
 
 	public T first() {
@@ -98,24 +107,30 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		      if (isEmpty())
 		          return false;
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-		      Boolean enc = false;
-		      T elemento = this.last();
-		      while(!enc) {
-		    	  Iterator<T> itr = this.iterator();
-		    	  if(elemento.equals(elem)) {
-		    		  enc = true;
-		    	  }
-		    	  else {
-		    		  elemento = itr.next();
-		    	  }
-		      }
+		      T act = null;
+		      Iterator<T> itr = this.iterator();
+		      boolean enc = false;
+		      while(!enc && itr.hasNext()) {
+					act = itr.next();
+					if(act.equals(elem)) enc = true;
+				}
 		      return enc;
 		   }
 
 	public T find(T elem) {
 	//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no esté
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-
+		
+		Iterator<T> itr = this.iterator();
+		T objetivo = null;
+		boolean enc = false;
+		
+		while(!enc && itr.hasNext()) {
+			objetivo = itr.next();
+			if(objetivo.equals(elem)) enc = true;
+		}
+		
+		return objetivo;
 	}
 
 	public boolean isEmpty() 
@@ -130,13 +145,21 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public Iterator<T> iterator() { return new ListIterator(); } 
 
 	   // an iterator, doesn't implement remove() since it's optional 
-	   private class ListIterator implements Iterator<T> { 
+	   private class ListIterator implements Iterator<T> {
+			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		   private Node<T> current = last;
+		@Override
+		public boolean hasNext() {return !(current.next == last);}
 
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-
-
-
-	   } // private class
+		@Override
+		public T next() {
+			if(!hasNext()) throw new NoSuchElementException();
+			T elem = current.data;
+			current = current.next;
+			return elem;
+		} 
+		public void remove() {throw new UnsupportedOperationException();}
+	   } 
 		
 		
          public void visualizarNodos() {

@@ -1,4 +1,4 @@
-package segundaFase;
+package alumnos.src;
 
 	public class Node<T> {
 		public T data; 			// dato del nodo
