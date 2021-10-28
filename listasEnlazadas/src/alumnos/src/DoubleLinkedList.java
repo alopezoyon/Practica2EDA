@@ -6,13 +6,13 @@ import java.util.NoSuchElementException;
 public class DoubleLinkedList<T> implements ListADT<T> {
 
 	// Atributos
-	protected Node<T> last;  // apuntador al último
-	protected String descr;  // descripción
+	protected Node<T> last;  // apuntador al ï¿½ltimo
+	protected String descr;  // descripciï¿½n
 	protected int count;
 
 	// Constructor
 	public DoubleLinkedList() {
-               last = null;
+        last = null;
 		descr = "";
 		count = 0;
 	}
@@ -27,7 +27,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public T removeFirst() {
 	// Elimina el primer elemento de la lista
-        // Precondición: La lista no es vacía. Hay, al menos, un elemento.
+        // Precondiciï¿½n: La lista no es vacï¿½a. Hay, al menos, un elemento.
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
 		T eliminado = this.first();
 		if(this.first() == null) {};
@@ -42,8 +42,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T removeLast() {
-	// Elimina el último elemento de la lista
-        // Precondición: La lista no es vacía. Hay, al menos, un elemento.
+	// Elimina el ï¿½ltimo elemento de la lista
+        // Precondiciï¿½n: La lista no es vacï¿½a. Hay, al menos, un elemento.
 			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
 		T eliminado = this.last();
 		if(this.first() == null) {};
@@ -96,7 +96,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public T last() {
-	//Da acceso al último elemento de la lista
+	//Da acceso al ï¿½ltimo elemento de la lista
 	      if (isEmpty())
 	          return null;
 	      else return last.data;
@@ -118,7 +118,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		   }
 
 	public T find(T elem) {
-	//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no esté
+	//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no estï¿½
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
 		
 		Iterator<T> itr = this.iterator();
@@ -134,11 +134,11 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	}
 
 	public boolean isEmpty() 
-	//Determina si la lista está vacía
+	//Determina si la lista estï¿½ vacï¿½a
 	{ return last == null;};
 	
 	public int size() 
-	//Determina el número de elementos de la lista
+	//Determina el nï¿½mero de elementos de la lista
 	{ return count;};
 	
 	/** Return an iterator to the stack that iterates through the items . */ 

@@ -2,21 +2,82 @@ package alumnos.src;
 
 public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T> {
 	
+	public UnorderedDoubleLinkedList() {
+		super();
+	}
+	
 	public void addToFront(T elem) {
-	// aÒade un elemento al comienzo
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-
+		//PRE: un elemento de tipo T
+		//POST: se a√±ade el elemento al inicio
+		//Coste: O(1) constante porque todo son asignaciones de variables y atributos
+		
+		Node<T> ultimo = super.last;
+		Node<T> nuevo = new Node<T>(elem);
+		
+		if(ultimo != null) {
+			nuevo.prev = ultimo;
+			nuevo.next = ultimo.next;
+			ultimo.next.prev = nuevo;
+			ultimo.next = nuevo;
+		}else {
+			nuevo.next = nuevo;
+			nuevo.prev = nuevo;
+			super.last = nuevo;
+		}
 	}
 
 	public void addToRear(T elem) {
-	// aÒade un elemento al final 
-		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-
+		//PRE: un elemento de tipo T
+		//POST: se a√±ade el elemento al final
+		//Coste: O(1) constante porque todo son asignaciones de variables y atributos
+		
+		Node<T> ultimo = super.last;
+		Node<T> nuevo = new Node<T>(elem);
+		
+		if(ultimo != null) {
+			nuevo.prev = ultimo;
+			nuevo.next = ultimo.next;
+			ultimo.next.prev = nuevo;
+			ultimo.next = nuevo;
+			super.last = nuevo;
+			
+		}else {
+			nuevo.next = nuevo;
+			nuevo.prev = nuevo;
+			super.last = nuevo;
+		}
 	}
 	
 	public void addAfter(T elem, T target) {
-	// AÒade elem detr·s de otro elemento concreto, target,  que ya se encuentra en la lista
-		// °COMPLETAR OPCIONAL!
+		//PRE: el elemento a a√±adir y el target tras el cual hay que a√±adirlo
+		//POST: se ha a√±adido el elemento despu√©s del target
+		//Coste: O(n) en el peor de los casos (no se encuntra target). Porque hay que recorrer la lista
+		//		 buscando target y el resto de las instrucciones son asignaciones y o llamadas a m√©todos con coste constante.
+		
+		Node<T> act = super.last;
+		boolean encontrado = false;
+		
+		if(act == null) return;
+		else if(act.data.equals(target)) {
+			//addAfter despu√©s del √∫ltimo
+			this.addToRear(elem);
+			encontrado = true;
+		}else {
+			act = act.next;
+			while(act != super.last && !encontrado) {
+				if(act.equals(target)) {
+					Node<T> nuevo = new Node<T>(elem);
+					nuevo.prev = act;
+					nuevo.next = act.next;
+					act.next.prev = nuevo;
+					act.next = nuevo;
+					
+					encontrado = true;
+				}
+				act = act.next;
+			}
+		}
+		
 	}
 
 }
