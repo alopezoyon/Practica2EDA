@@ -29,6 +29,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// Elimina el primer elemento de la lista
         // Precondiciï¿½n: La lista no es vacï¿½a. Hay, al menos, un elemento.
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		//Coste:O(1). Coste constante ya que son todo asignaciones y comprobaciones de coste constante.
 		T eliminado = this.first();
 		if(this.first() == null) {};
 		if(this.first().equals(last.data)) {last = null;}
@@ -45,6 +46,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// Elimina el ï¿½ltimo elemento de la lista
         // Precondiciï¿½n: La lista no es vacï¿½a. Hay, al menos, un elemento.
 			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		//Coste:O(1). Coste constante ya que son todo asignaciones y comprobaciones de coste constante.
 		T eliminado = this.last();
 		if(this.first() == null) {};
 		if(this.first().equals(last.data)) {last = null;}
@@ -60,6 +62,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public T remove(T elem) {
 	//Elimina un elemento concreto de la lista
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		//Coste:O(n). En el peor de los casos es coste n, ya que comprueba con el método contains, que es de coste lineal. 
+		//El resto de operaciones de coste constante.
 		T eliminado = elem;
 		boolean enc = false;
 		if(last == null) {};
@@ -107,6 +111,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		      if (isEmpty())
 		          return false;
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		//Coste:O(n). Coste lineal ya que en el peor de los casos, el iterador mira todos los elementos de la lista.
 		      T act = null;
 		      Iterator<T> itr = this.iterator();
 		      boolean enc = false;
@@ -120,7 +125,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public T find(T elem) {
 	//Determina si la lista contiene un elemento concreto, y develve su referencia, null en caso de que no estï¿½
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-		
+		//Coste:O(n). Coste lineal ya que en el peor de los casos, el iterador mira todos los elementos de la lista.
 		Iterator<T> itr = this.iterator();
 		T objetivo = null;
 		boolean enc = false;
@@ -147,6 +152,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	   // an iterator, doesn't implement remove() since it's optional 
 	   private class ListIterator implements Iterator<T> {
 			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
+		   //Coste:O(n). Coste lineal ya que el iterador comprueba por todos los elementos de la lista(n = nºelementos de la lista). 
 		   private Node<T> current = last;
 		@Override
 		public boolean hasNext() {return !(current.next == last);}
