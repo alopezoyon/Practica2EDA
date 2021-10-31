@@ -120,6 +120,7 @@ public class UnorderedDoubleLinkedListTest {
 		
 		//Lista con b y elem es null y target es b
 		this.lista.addToFront("b");
+		assertEquals("b", this.lista.first());
 		assertEquals(1, this.lista.size());
 		
 		this.lista.addAfter(null, "b");
@@ -140,6 +141,7 @@ public class UnorderedDoubleLinkedListTest {
 		assertEquals(2, this.lista.size());
 		
 		
+		
 		this.lista = new UnorderedDoubleLinkedList<String>();
 		this.lista.addToRear("a");
 		this.lista.addToRear("b");
@@ -156,7 +158,7 @@ public class UnorderedDoubleLinkedListTest {
 		//Lista con a, b y elem es c y target es b
 		this.lista.addAfter("c", "b");
 		assertEquals("a", this.lista.first());
-		assertTrue(this.lista.contains("b"));
+		//assertTrue(this.lista.contains("b"));
 		assertEquals("c", this.lista.last());
 		assertEquals(3, this.lista.size());
 		
@@ -164,6 +166,7 @@ public class UnorderedDoubleLinkedListTest {
 		this.lista = new UnorderedDoubleLinkedList<String>();
 		this.lista.addToRear("a");
 		this.lista.addToRear("b");
+		
 		assertEquals("a", this.lista.first());
 		assertEquals("b", this.lista.last());
 		assertEquals(2, this.lista.size());
@@ -174,6 +177,7 @@ public class UnorderedDoubleLinkedListTest {
 		assertTrue(this.lista.contains("c"));
 		assertEquals("b", this.lista.last());
 		assertEquals(3, this.lista.size());
+		
 	}
 
 }
