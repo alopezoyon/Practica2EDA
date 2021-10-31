@@ -64,11 +64,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public T remove(T elem) {
 	//Elimina un elemento concreto de la lista
 		// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-<<<<<<< HEAD
-		//Coste:O(n). En el peor de los casos es coste n, ya que comprueba con el mï¿½todo contains, que es de coste lineal. 
-=======
-		//Coste:O(n). En el peor de los casos es coste n, ya que comprueba con el método contains, que es de coste lineal. 
->>>>>>> upstream/main
 		//El resto de operaciones de coste constante.
 		T eliminado = elem;
 		boolean enc = false;
@@ -159,7 +154,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	   // an iterator, doesn't implement remove() since it's optional 
 	   private class ListIterator implements Iterator<T> {
 			// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
-<<<<<<< HEAD
 		   //Coste:O(n). Coste lineal ya que el iterador comprueba por todos los elementos de la lista(n = nï¿½elementos de la lista). 
 		   	private Node<T> current;
 		   	boolean primero;
@@ -186,23 +180,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				return elem;
 			} 
 			public void remove() {throw new UnsupportedOperationException();}
-=======
-		   //Coste:O(n). Coste lineal ya que el iterador comprueba por todos los elementos de la lista(n = nºelementos de la lista). 
-		   private Node<T> current = last;
-		@Override
-		public boolean hasNext() {return !(current.next == last);}
-
-		@Override
-		public T next() {
-			if(!hasNext()) throw new NoSuchElementException();
-			T elem = current.data;
-			current = current.next;
-			return elem;
-		} 
-		public void remove() {throw new UnsupportedOperationException();}
->>>>>>> upstream/main
-	   } 
-		
 		
 	   public void visualizarNodos() {
 		   System.out.println(this.toString());
@@ -220,3 +197,5 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 
 }
+}
+	   
