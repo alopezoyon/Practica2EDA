@@ -158,7 +158,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		   //Coste:O(n). Coste lineal ya que el iterador comprueba por todos los elementos de la lista(n = n�elementos de la lista). 
 		   	private Node<T> current;
 		   	boolean primero;
-		   	boolean vuelta = false;
 		   	
 		   	private ListIterator(){
 		   		if(last == null) current = last;
