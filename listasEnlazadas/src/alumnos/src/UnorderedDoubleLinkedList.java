@@ -11,6 +11,8 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		//POST: se añade el elemento al inicio
 		//Coste: O(1) constante porque todo son asignaciones de variables y atributos
 		
+		if(elem == null) return;
+		
 		Node<T> ultimo = super.last;
 		Node<T> nuevo = new Node<T>(elem);
 		
@@ -19,17 +21,21 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 			nuevo.next = ultimo.next;
 			ultimo.next.prev = nuevo;
 			ultimo.next = nuevo;
+			
 		}else {
 			nuevo.next = nuevo;
 			nuevo.prev = nuevo;
 			super.last = nuevo;
 		}
+		super.count++;
 	}
 
 	public void addToRear(T elem) {
 		//PRE: un elemento de tipo T
 		//POST: se añade el elemento al final
 		//Coste: O(1) constante porque todo son asignaciones de variables y atributos
+		
+		if(elem == null) return;
 		
 		Node<T> ultimo = super.last;
 		Node<T> nuevo = new Node<T>(elem);
@@ -46,6 +52,7 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 			nuevo.prev = nuevo;
 			super.last = nuevo;
 		}
+		super.count++;
 	}
 	
 	public void addAfter(T elem, T target) {
@@ -53,6 +60,8 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		//POST: se ha añadido el elemento después del target
 		//Coste: O(n) en el peor de los casos (no se encuntra target). Porque hay que recorrer la lista
 		//		 buscando target y el resto de las instrucciones son asignaciones y o llamadas a métodos con coste constante.
+		
+		if(elem == null || target == null) return;
 		
 		Node<T> act = super.last;
 		boolean encontrado = false;
@@ -78,6 +87,7 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 			}
 		}
 		
+		if(encontrado) super.count++;
 	}
 
 }
