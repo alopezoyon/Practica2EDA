@@ -32,12 +32,13 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		//Coste:O(1). Coste constante ya que son todo asignaciones y comprobaciones de coste constante.
 		T eliminado = this.first();
 		if(this.first() == null) {};
-		if(this.first().equals(last.data)) {last = null;}
+		if(this.first().equals(last.data)) {last = null; this.count --;}
 		else {
 			Node <T> primero = last.next;
 			primero = primero.next;
 			primero.prev = last;
 			last.next = primero;
+			this.count --;
 		}
 		return eliminado;
 	}
@@ -49,11 +50,12 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		//Coste:O(1). Coste constante ya que son todo asignaciones y comprobaciones de coste constante.
 		T eliminado = this.last();
 		if(this.first() == null) {};
-		if(this.first().equals(last.data)) {last = null;}
+		if(this.first().equals(last.data)) {last = null; this.count --;}
 		else {
 			Node <T> ultimo = last;
 			ultimo.next.prev = ultimo.prev;
 			ultimo.prev.next = ultimo.next;
+			this.count --;
 		}
 		return eliminado;
 	}
@@ -87,6 +89,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				}
 				act.next.prev = act.prev;
 				act.prev.next = act.next;
+				this.count --;
 			}
 		}
 		return eliminado;
